@@ -11,7 +11,7 @@ namespace NineLives.Framework.Core.Application.Manager.Tests
         {
             var context = new DummyGameContext();
             var loadingState = new LoadingState(context);
-            Assert.AreEqual(AppState.Loading, loadingState.AppState);
+            Assert.That(loadingState.AppState, Is.EqualTo(AppState.Loading));
         }
 
         [Test]
