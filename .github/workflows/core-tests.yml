@@ -18,11 +18,11 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore
+      - name: Restore plain .Net solution for Core
         run: dotnet restore DotNet/NineLives.Framework.DotNet.Core/NineLives.Framework.DotNet.Core.slnx
 
-      - name: Build
+      - name: Build plain .Net solution for Core
         run: dotnet build DotNet/NineLives.Framework.DotNet.Core/NineLives.Framework.DotNet.Core.slnx --no-restore
 
-      - name: Test
+      - name: Test plain .Net solution for Core
         run: dotnet test DotNet/NineLives.Framework.DotNet.Core/NineLives.Framework.DotNet.Core.slnx --no-build --verbosity normal
