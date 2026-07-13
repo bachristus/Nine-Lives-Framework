@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "unity": "6000.3",
   "description": "Reusable framework for Unity games",
-  "author":
-  {
-    "name": "Pavlo Pastushenko"
+  "author": {
+    "name": "Pavlo Pastushenko",
+    "email": "bachristus@yahoo.com"
   }
 }
