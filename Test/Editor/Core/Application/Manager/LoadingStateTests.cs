@@ -67,7 +67,7 @@ namespace NineLives.Framework.Core.Application.Manager.Tests
             context.PlaceGameLoadingRequest(gameName);
             loadingState.Enter();
             loadingOperation.InvokeCompletedSuccessfully();
-            Assert.AreEqual(context.Playing,context.CurrentState);
+            Assert.That(context.CurrentState, Is.EqualTo(context.Playing));
         }
 
         [TestCase(null)]
