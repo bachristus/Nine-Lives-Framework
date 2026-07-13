@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="NineLives.Framework.DotNet.Core/NineLives.Framework.DotNet.Core.csproj" />
+  <Project Path="NineLives.Framework.DotNet.Core.Tests/NineLives.Framework.DotNet.Core.Tests.csproj" />
+</Solution>
