@@ -17,7 +17,7 @@ namespace NineLives.Framework.Core.Application.Manager
         public event Action? QuitGameRequested;
         public event Action? LoadingCancellationRequested;
         public event Action<AppState>? AppStateChanged;
-        public event Action<IProgressAsyncOperation<ILoadedSimulation>>? GameLoadingStarted;
+        public event Action<IProgressAsyncOperation<ILoadedSimulation>>? SimulationLoadingStarted;
 
         public void CancelLoadingGame() => LoadingCancellationRequested?.Invoke();
 
@@ -59,7 +59,7 @@ namespace NineLives.Framework.Core.Application.Manager
 
         private void OnGameLoadingStarted(IProgressAsyncOperation<ILoadedSimulation> loadingOperation)
         {
-            GameLoadingStarted?.Invoke(loadingOperation);
+            SimulationLoadingStarted?.Invoke(loadingOperation);
         }
 
         private void OnFSMStateChanged(AppState stateId)

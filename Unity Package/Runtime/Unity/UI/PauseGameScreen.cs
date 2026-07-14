@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 namespace NineLives.Village.Game
 {
-    internal class PauseGameScreen: AppScreen
+    internal class PauseGameScreen : AppScreen
     {
-        [SerializeField] private Button resumePlayingButton; 
+        [SerializeField] private Button resumePlayingButton;
         [SerializeField] private Button exitGameButton;
 
         protected virtual void Start()
@@ -18,12 +18,12 @@ namespace NineLives.Village.Game
 
         private void OnExitGameClicked()
         {
-            GameManager?.GoToMenu();
+            AppManager?.GoToMenu();
         }
 
         private void OnResumePlayingClicked()
         {
-            GameManager?.ResumeGame();
+            AppManager?.ResumeGame();
         }
 
         override public AppState AppState => AppState.Pause;
