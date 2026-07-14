@@ -7,7 +7,7 @@ namespace NineLives.Framework.Unity.UI
         public override void OnClick()
         {
             Debug.Log($"GoBackButton clicked, going back to previous screen");
-            ui.RequestToGoBack();
+            ui.GoBackToPreviousScreen();
         }
     }
 }

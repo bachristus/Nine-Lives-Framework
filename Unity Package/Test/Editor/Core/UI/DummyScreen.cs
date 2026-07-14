@@ -7,10 +7,8 @@ namespace NineLives.Framework.Core.UI.Tests
     {
         public DummyScreen(string name, bool isVisibleExclusively=true, bool isVisible=true, bool isInteractable=true, bool isModal = true, AppState appState = AppState.None)
         {
-            Id=new ScreenId()
-            {
-                Id=name
-            };
+            Id = name;
+            Title=name.ToUpperInvariant();
             AppState=appState;
             IsModal=isModal;
             IsVisibleExclusively=isVisibleExclusively;
@@ -18,7 +16,7 @@ namespace NineLives.Framework.Core.UI.Tests
             IsInteractable = isInteractable;
         }
 
-        public ScreenId Id { get; private set; }
+        public string Id { get; private set; }
 
         public AppState AppState { get; set; }
 
@@ -34,7 +32,7 @@ namespace NineLives.Framework.Core.UI.Tests
 
         public void Initialize(IAppManager gameManager, IUIRequest uiRequest)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void ProcessCancel()

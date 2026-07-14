@@ -5,7 +5,7 @@ namespace NineLives.Framework.Core.UI
     public interface IScreen:IVisualElement
     {
         string Title { get; set; }
-        ScreenId Id { get; }
+        string Id { get; }
         AppState AppState { get; }
         bool IsModal { get; }
         bool IsVisibleExclusively { get; }

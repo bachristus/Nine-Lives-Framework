@@ -96,8 +96,8 @@ namespace NineLives.Framework.Core.UI.Tests
             subSettingsScreen.ProcessCancelPressed += () => { callsCount++; };
 
             appStateHolder.InvokeAppStateChanged(AppState.Menu);
-            manager.RequestScreenToBeShown(settingsScreen.Id);
-            manager.RequestScreenToBeShown(subSettingsScreen.Id);
+            manager.ShowScreen(settingsScreen.Id);
+            manager.ShowScreen(subSettingsScreen.Id);
             Assert.AreEqual(0, callsCount);
             input.InvokeEscapePressed();
             Assert.AreEqual(1, callsCount);

@@ -4,7 +4,7 @@ namespace NineLives.Framework.Core.UI
 {
     public interface IUIEvents
     {
-        event Action<ScreenId> ShowScreenRequested;
+        event Action<string> ShowScreenRequested;
         event Action GoBackRequested;
     }
 }

@@ -23,11 +23,8 @@ namespace NineLives.Framework.Core.Application.Manager.Tests
         public ISimulationProvider SimulationProvider { get; private set; } 
 
         public IApplicationFSMState Pause { get; set; }
-
         public IApplicationFSMState Playing { get; set; }
-
         public IApplicationFSMState Menu { get; set; }
-
         public IApplicationFSMState Loading { get; set; }
 
         public IApplicationFSMState? CurrentState { get; private set; }
