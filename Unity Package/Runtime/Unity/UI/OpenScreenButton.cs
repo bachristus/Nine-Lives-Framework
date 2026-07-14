@@ -8,8 +8,8 @@ namespace NineLives.Framework.Unity.UI
 
         public override void OnClick()
         {
-            Debug.Log($"OpenScreenButton clicked, opening screen: {targetScreen.Id.Id}");
-            ui.ShowScreen(targetScreen.Id);
+            Debug.Log($"OpenScreenButton clicked, opening screen: {targetScreen.UniqueId}");
+            ui.ShowScreen(targetScreen.UniqueId);
         }
     }
 }

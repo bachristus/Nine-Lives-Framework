@@ -8,7 +8,7 @@ namespace NineLives.Framework.Core.UI
     public class UIManager:IUIRequest, IDisposable
     {                
         private readonly IScreenShower shower;
-        private readonly Dictionary<CurrentScreenId, IScreen> screensById = new();
+        private readonly Dictionary<string, IScreen> screensById = new();
         private readonly Dictionary<AppState, IScreen> screensByGameState = new();
         private readonly IAppStateHolder gameStateHolder;
         private readonly IGameInput input;
@@ -91,7 +91,7 @@ namespace NineLives.Framework.Core.UI
             }
         }
 
-        public void ShowScreen(CurrentScreenId screenId)
+        public void ShowScreen(string screenId)
         {            
             if (screensById.TryGetValue(screenId, out var screen))
             {

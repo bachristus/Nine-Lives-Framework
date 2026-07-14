@@ -97,7 +97,7 @@ namespace NineLives.Framework.Unity.Game
                     await Task.Delay(100);
 #endif
 
-                    gameLoadingProgress.Report(pr+=0.05f, $"Screen '{screen.Id.Id}' initialized...");
+                    gameLoadingProgress.Report(pr+=0.05f, $"Screen '{screen.Id}' initialized...");
                     
                     screen.Initialize(gameManager, uiManager/*, GameInput*/);
                 }

@@ -6,6 +6,6 @@ namespace NineLives.Framework.Unity.UI
     [CreateAssetMenu(menuName = "UI/Create new Screen Id")]
     public class ScreenIdSO:ScriptableObject
     {
-        public CurrentScreenId Id;
+        public string UniqueId;
     }
 }
