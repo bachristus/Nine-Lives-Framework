@@ -1,13 +1,15 @@
+using NineLives.Framework.Core.Progress;
 using NineLives.Framework.Core.UI;
-using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NineLives.Framework.Unity.UI
 {
-    public class UnityScreenSceneSearcher : IScreenProvider
+    public class ScreenSceneSearcher : IScreensProvider
     {
-        public IEnumerable<IScreen> GetScreens()
+        public Task<IScreen[]> GetScreens(IOperationProgress progress, CancellationToken token)
         {
-            return GameObjectHelper.FindAllMonoBehavioursOfType<IScreen>(UnityEngine.FindObjectsInactive.Include);
+            return Task.FromResult(GameObjectHelper.FindAllMonoBehavioursOfType<IScreen>(UnityEngine.FindObjectsInactive.Include));
         }
     }
 }

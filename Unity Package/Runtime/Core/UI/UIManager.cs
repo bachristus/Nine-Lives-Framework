@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace NineLives.Framework.Core.UI
 {
-    public class UIManager:IUIRequest, IDisposable
-    {                
+    public class UIManager : IUIRequest, IDisposable
+    {
         private readonly IScreenShower shower;
         private readonly Dictionary<string, IScreen> screensById = new();
         private readonly Dictionary<AppState, IScreen> screensByGameState = new();
@@ -15,34 +15,33 @@ namespace NineLives.Framework.Core.UI
         private readonly IDialogProvider dialogProvider;
 
         public UIManager(IAppStateHolder gameStateHolder, IGameInput gameInput, IScreenShower screenShower, IEnumerable<IScreen> screens, IDialogProvider dialogProvider)
-        {             
-            this.shower = screenShower;            
+        {
+            this.shower = screenShower;
             this.gameStateHolder = gameStateHolder;
             this.input = gameInput;
             this.dialogProvider = dialogProvider;
 
-            shower.HideAllScreens();            
-
-            foreach (var subScreen in screens)
+            foreach (var screen in screens)
             {
-                subScreen.IsVisible = false;
-
-                var type = subScreen.GetType();
-                if (screensById.TryGetValue(subScreen.Id, out _))
+                screen.IsVisible = false;
+                var type = screen.GetType();
+                if (screensById.TryGetValue(screen.Id, out _))
                 {
-                    throw new Exception($"Screen of type={type.FullName} has screen ID duplicated in screens list");                     
-                }                
-                screensById.Add(subScreen.Id, subScreen);
+                    throw new Exception($"Screen of type={type.FullName} has screen ID duplicated in screens list");
+                }
+                screensById.Add(screen.Id, screen);
 
-                if (subScreen.AppState != AppState.None)
+                if (screen.AppState != AppState.None)
                 {
-                    if (screensByGameState.TryGetValue(subScreen.AppState, out _))
+                    if (screensByGameState.TryGetValue(screen.AppState, out _))
                     {
                         throw new Exception($"Screen of type={type.FullName} has game state ID duplicated in screens list");
                     }
 
-                    screensByGameState.Add(subScreen.AppState, subScreen);
+                    screensByGameState.Add(screen.AppState, screen);
                 }
+
+                screen.UIRequest = this;
             }
 
             gameStateHolder.AppStateChanged += OnGameStateChanged;
@@ -51,7 +50,7 @@ namespace NineLives.Framework.Core.UI
 
         private void OnCancel()
         {
-            shower.Current?.ProcessCancel();            
+            shower.Current?.ProcessCancel();
         }
 
         public void GoBackToPreviousScreen()
@@ -60,7 +59,7 @@ namespace NineLives.Framework.Core.UI
         }
 
         private void OnGameStateChanged(AppState appState)
-        {                        
+        {
             switch (appState)
             {
                 case AppState.Menu:
@@ -78,7 +77,7 @@ namespace NineLives.Framework.Core.UI
                     break;
 
                 default:
-                   throw new ArgumentException($"Unknown application state={appState}");
+                    throw new ArgumentException($"Unknown application state={appState}");
             }
             ShowScreen(appState);
         }
@@ -92,29 +91,29 @@ namespace NineLives.Framework.Core.UI
         }
 
         public void ShowScreen(string screenId)
-        {            
+        {
             if (screensById.TryGetValue(screenId, out var screen))
             {
                 shower.ShowScreen(screen);
             }
-        }        
+        }
 
         public void Dispose()
         {
-            gameStateHolder.AppStateChanged-= OnGameStateChanged;
+            gameStateHolder.AppStateChanged -= OnGameStateChanged;
         }
 
         public async Task<DialogButtonInfo> ShowDialog(DialogArguments dialogArguments)
         {
-            IDialogScreen dialogScreen = this.dialogProvider.GetDialog(dialogArguments); 
+            IDialogScreen dialogScreen = this.dialogProvider.GetDialog(dialogArguments);
             var tcs = new TaskCompletionSource<DialogButtonInfo>();
 
             void OnClosed(DialogButtonInfo info)
             {
                 dialogScreen.Closed -= OnClosed;
-                if(shower.TryGoBackToPreviousScreen(out _))
+                if (shower.TryGoBackToPreviousScreen(out _))
                 {
-                    dialogProvider.Release(dialogScreen); 
+                    dialogProvider.Release(dialogScreen);
                 }
                 tcs.TrySetResult(info);
             }
@@ -125,5 +124,5 @@ namespace NineLives.Framework.Core.UI
 
             return await tcs.Task;
         }
-    }    
+    }
 }

@@ -10,7 +10,8 @@ namespace NineLives.Framework.Core.UI
         bool IsModal { get; }
         bool IsVisibleExclusively { get; }
 
-        void Initialize(IAppManager gameManager, IUIRequest uiRequest);
+        IAppManager? AppManager { get; set; }
+        IUIRequest? UIRequest { get; set; }
         void ProcessCancel();
 
         bool IsInteractable { get; set; }

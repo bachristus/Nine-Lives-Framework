@@ -18,18 +18,29 @@ namespace NineLives.Framework.Unity.UI
                 cancelButton = gameObject.GetComponentInChildren<CancelButton>();
             }
         }
-        
+
         public override AppState AppState => AppState.Loading;
 
-        public override void Initialize(IAppManager gameManager, IUIRequest uiRequest/*, IGameInput input*/)
+        public override IAppManager? AppManager
         {
-            base.Initialize(gameManager, uiRequest/*, input*/);
-            gameManager.GameLoadingStarted += OnGameLoadingStarted;
+            get => base.AppManager;
+            set
+            {
+                if (base.AppManager != null)
+                {
+                    base.AppManager.SimulationLoadingStarted -= OnGameLoadingStarted;
+                }
+                base.AppManager = value;
+                if (base.AppManager != null)
+                {
+                    base.AppManager.SimulationLoadingStarted += OnGameLoadingStarted;
+                }
+            }
         }
 
         private void OnGameLoadingStarted(IProgressAsyncOperation<ILoadedSimulation> operation)
-        {           
-            loadingOperation= operation;
+        {
+            loadingOperation = operation;
             loadingOperation.Finished += OnLoadingOperationFinished;
             progressBar.SetProgressReporter(loadingOperation.Progress);
             cancelButton.SetCancelable(loadingOperation);
@@ -44,13 +55,13 @@ namespace NineLives.Framework.Unity.UI
             progressBar.SetProgressReporter(null);
             cancelButton.SetCancelable(null);
             loadingOperation = null;
-        }        
+        }
 
         protected virtual void OnDestroy()
         {
-            if (GameManager != null)
+            if (AppManager != null)
             {
-                GameManager.GameLoadingStarted -= OnGameLoadingStarted;
+                AppManager.SimulationLoadingStarted -= OnGameLoadingStarted;
             }
         }
     }

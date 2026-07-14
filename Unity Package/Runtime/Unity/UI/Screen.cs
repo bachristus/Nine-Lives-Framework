@@ -1,6 +1,5 @@
 using NineLives.Framework.Core.Application;
 using NineLives.Framework.Core.UI;
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -14,11 +13,23 @@ namespace NineLives.Framework.Unity.UI
         [SerializeField] private bool isModal;
         [SerializeField] private bool isVisibleExclusively;
 
-        protected IUIRequest? UIRequest { get; private set; }
+        private IUIRequest? uiRequest;
+        public virtual IUIRequest? UIRequest
+        {
+            get => uiRequest;
 
-        private bool isInitialized;        
-        protected IAppManager? GameManager { get; set; }
-        public string Id => screenIdSO.UniqueId;        
+            set
+            {
+                uiRequest = value;
+                if (uiRequest != null)
+                {
+                    InitializeUIRequestButtons(uiRequest);
+                }
+            }
+        }
+
+        public virtual IAppManager? AppManager { get; set; }
+        public string Id => screenIdSO.UniqueId;
         public virtual AppState AppState => AppState.None;
         public bool IsModal => isModal;
 
@@ -27,8 +38,8 @@ namespace NineLives.Framework.Unity.UI
         private bool isInteractable = true;
         public bool IsInteractable
         {
-            get=> isInteractable;
-            set 
+            get => isInteractable;
+            set
             {
                 isInteractable = value;
                 if (canvasGroup != null)
@@ -41,19 +52,9 @@ namespace NineLives.Framework.Unity.UI
         public bool IsVisibleExclusively => isVisibleExclusively;
 
         public string Title { get => title.text; set => title.text = value; }
-
-        public virtual void Initialize(IAppManager gameManager, IUIRequest uiRequest)
+        protected virtual void Awake()
         {
-            if (isInitialized) throw new Exception($"Method Initialize() is called twice on '{GetType()}' instance");
-
-            GameManager = gameManager;
-            UIRequest = uiRequest;            
-
-            canvasGroup=GetComponent<CanvasGroup>();
-
-            InitializeUIRequestButtons(uiRequest);
-
-            isInitialized = true;
+            canvasGroup = GetComponent<CanvasGroup>();
         }
 
         private void InitializeUIRequestButtons(IUIRequest uiRequest)
@@ -75,7 +76,7 @@ namespace NineLives.Framework.Unity.UI
         }
 
         protected virtual void OnCancelPressed()
-        {            
+        {
         }
     }
 }
