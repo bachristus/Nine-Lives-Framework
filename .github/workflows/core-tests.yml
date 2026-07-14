@@ -8,7 +8,7 @@ on:
 
 jobs:
   core-tests:
-    name: Core (plain .NET) Tests
+    name: Core (plain .NET) tests
     runs-on: ubuntu-latest
 
     steps:
@@ -19,11 +19,11 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore plain .Net solution for Core
-        run: dotnet restore DotNet/NineLives.Framework.DotNet.Core/NineLives.Framework.DotNet.Core.slnx
+      - name: Restore plain .Net solution
+        run: dotnet restore PlainDotNet/PlainDotNet.slnx
 
-      - name: Build plain .Net solution for Core
-        run: dotnet build DotNet/NineLives.Framework.DotNet.Core/NineLives.Framework.DotNet.Core.slnx --no-restore
+      - name: Build plain .Net solution
+        run: dotnet build PlainDotNet/PlainDotNet.slnx --no-restore
 
-      - name: Test plain .Net solution for Core
-        run: dotnet test DotNet/NineLives.Framework.DotNet.Core/NineLives.Framework.DotNet.Core.slnx --no-build --verbosity normal
+      - name: Test plain .Net solution
+        run: dotnet test PlainDotNet/PlainDotNet.slnx --no-build --verbosity normal

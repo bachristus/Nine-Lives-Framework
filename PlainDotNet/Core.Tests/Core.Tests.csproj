@@ -16,16 +16,12 @@
     <PackageReference Include="NUnit.Analyzers" Version="3.9.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
   </ItemGroup>
-
-  <!--<ItemGroup>
-    <Using Include="NUnit.Framework" />
-  </ItemGroup>-->
   
   <ItemGroup>
-    <Compile Include="..\..\..\Test\Editor\Core\**\*.cs" />
+    <Compile Include="..\..\Unity Package\Test\Editor\Core\**\*.cs" />
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\NineLives.Framework.DotNet.Core\NineLives.Framework.DotNet.Core.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 </Project>
