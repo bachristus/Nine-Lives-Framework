@@ -9,7 +9,7 @@ namespace NineLives.Framework.Unity.UI
         public override void OnClick()
         {
             Debug.Log($"OpenScreenButton clicked, opening screen: {targetScreen.Id.Id}");
-            ui.RequestScreenToBeShown(targetScreen.Id);
+            ui.ShowScreen(targetScreen.Id);
         }
     }
 }

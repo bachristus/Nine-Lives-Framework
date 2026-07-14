@@ -18,7 +18,7 @@ namespace NineLives.Framework.Unity.UI
 
         private bool isInitialized;        
         protected IAppManager? GameManager { get; set; }
-        public ScreenId Id => screenIdSO.Id;        
+        public CurrentScreenId Id => screenIdSO.Id;        
         public virtual AppState AppState => AppState.None;
         public bool IsModal => isModal;
 

@@ -23,7 +23,7 @@ namespace NineLives.Framework.Unity.UI
 
         protected override void OnCancelPressed()
         {
-            UIRequest?.RequestToGoBack();            
+            UIRequest?.GoBackToPreviousScreen();            
         }
     }
 }

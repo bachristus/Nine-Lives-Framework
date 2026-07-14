@@ -1,6 +1,6 @@
 {
-    "name": "NineLives.Framework.Unity.Tests",
-    "rootNamespace": "NineLives.Framework.Unity.Tests",
+    "name": "NineLives.Framework.Unity.Tests.Runtime",
+    "rootNamespace": "NineLives.Framework.Unity.Tests.Runtime",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",

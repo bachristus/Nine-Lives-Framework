@@ -15,7 +15,7 @@ namespace NineLives.Framework.Unity.Game
 {
     public class GameStarter<TSimulationState> where TSimulationState : ISimulationState
     {
-        public IGameInput GameInput { get; }
+        private readonly IGameInput input;
 
         private readonly IInitializingScreen initializingScreen;
         private readonly string uiSceneName;
@@ -35,7 +35,7 @@ namespace NineLives.Framework.Unity.Game
             TSimulationState newGameSimulationState)
         {
             Debug.Log($"'{GetType()}' ctor");
-            this.GameInput=input;
+            this.input=input;
             this.initializingScreen = initializingScreen;
             this.uiSceneName = uiSceneName;
             this.savesDataApplier = savesDataApplier;
@@ -89,7 +89,7 @@ namespace NineLives.Framework.Unity.Game
                 var screens = screensProvider.GetScreens();
                 var dialogProvider=GameObjectHelper.FindFirstMonoBehavioursOfType<IDialogProvider>(FindObjectsInactive.Include);
                 if (dialogProvider == null) throw new Exception("UI Scene does not contain {typeof(IdialogProvider)} components");
-                var uiManager = new UIManager(gameManager, GameInput, screenStack, screens, dialogProvider);
+                var uiManager = new UIManager(gameManager, input, screenStack, screens, dialogProvider);
                 
                 foreach (var screen in screens)
                 {

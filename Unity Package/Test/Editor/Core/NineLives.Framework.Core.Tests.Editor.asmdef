@@ -1,5 +1,5 @@
 {
-    "name": "NineLives.Framework.Core.Tests",
+    "name": "NineLives.Framework.Core.Tests.Editor",
     "rootNamespace": "NineLives.Framework.Core.Tests",
     "references": [
         "UnityEngine.TestRunner",

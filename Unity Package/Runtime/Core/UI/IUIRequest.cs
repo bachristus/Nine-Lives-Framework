@@ -4,8 +4,8 @@ namespace NineLives.Framework.Core.UI
 {
     public interface IUIRequest
     {
-        void RequestScreenToBeShown(ScreenId screenID);
-        void RequestToGoBack();
+        void ShowScreen(CurrentScreenId screenID);
+        void GoBackToPreviousScreen();
         Task<DialogButtonInfo> ShowDialog(DialogArguments dialogArguments);
     }
 }

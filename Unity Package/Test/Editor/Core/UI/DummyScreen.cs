@@ -7,7 +7,7 @@ namespace NineLives.Framework.Core.UI.Tests
     {
         public DummyScreen(string name, bool isVisibleExclusively=true, bool isVisible=true, bool isInteractable=true, bool isModal = true, AppState appState = AppState.None)
         {
-            Id=new ScreenId()
+            Id=new CurrentScreenId()
             {
                 Id=name
             };
@@ -18,7 +18,7 @@ namespace NineLives.Framework.Core.UI.Tests
             IsInteractable = isInteractable;
         }
 
-        public ScreenId Id { get; private set; }
+        public CurrentScreenId Id { get; private set; }
 
         public AppState AppState { get; set; }
 
