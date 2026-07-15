@@ -1,8 +1,8 @@
 {
   "name": "com.ninelives.framework",
   "displayName": "Nine Lives Games Framework",
-  "version": "0.1.0",
-  "unity": "6000.3",
+  "version": "0.1.1",
+  "unity": "6000.5",
   "description": "Reusable framework for Unity games",
   "author": {
     "name": "Pavlo Pastushenko",

@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks;
 using NineLives.Framework.Core.Progress;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,6 +13,6 @@ namespace NineLives.Framework.Unity.Scenes
             LoadSceneMode loadSceneMode,
             IOperationProgress progress,
             CancellationToken cancellationToken = default);
-        UniTask UnloadSceneAsync(string sceneName);
+        Task UnloadSceneAsync(string sceneName);
     }
 }
