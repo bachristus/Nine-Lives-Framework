@@ -1,8 +1,8 @@
 using NineLives.Framework.Core.Progress;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using Cysharp.Threading.Tasks;
 
 namespace NineLives.Framework.Unity.Scenes
 {
@@ -57,9 +57,9 @@ namespace NineLives.Framework.Unity.Scenes
             progress?.Report(1f, $"Scene '{sceneName}' loaded successfully");
         }
 
-        public UniTask UnloadSceneAsync(string sceneName)
+        public Task UnloadSceneAsync(string sceneName)
         {
-            return SceneManager.UnloadSceneAsync(sceneName).ToUniTask();
+            return SceneManager.UnloadSceneAsync(sceneName).AsTask();
         }
     }
 }
