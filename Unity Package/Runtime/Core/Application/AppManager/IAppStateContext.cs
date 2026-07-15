@@ -1,6 +1,6 @@
 namespace NineLives.Framework.Core.Application.Manager
 {
-    public interface IAppContext : IAppStateChanger, IAppEvents
+    public interface IAppStateContext : IAppStateChanger, IAppEvents
     {        
         ISimulationProvider SimulationProvider { get; }    
         ISimulationTime SimulationTime { get; }

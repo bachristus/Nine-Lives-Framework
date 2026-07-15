@@ -3,7 +3,7 @@ using System;
 
 namespace NineLives.Framework.Core.Application.Manager
 {   
-    public class AppManager : IAppManager, IAppStateHolder, IAppContext, IDisposable
+    public class AppManager : IAppManager, IAppStateHolder, IAppStateContext, IDisposable
     {
         private readonly ISimulationProvider simulationProvider;
         private readonly ISimulationTime time;

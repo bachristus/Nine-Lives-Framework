@@ -11,7 +11,7 @@ namespace NineLives.Framework.Unity.UI
         [SerializeField] private CancelButton cancelButton;
         private IProgressAsyncOperation<ILoadedSimulation>? loadingOperation;
 
-        void Awake()
+        protected override void Awake()
         {
             if (cancelButton == null)
             {
@@ -21,20 +21,19 @@ namespace NineLives.Framework.Unity.UI
 
         public override AppState AppState => AppState.Loading;
 
-        public override IAppManager? AppManager
+        void OnEnable()
         {
-            get => base.AppManager;
-            set
+            if (AppManager != null)
             {
-                if (base.AppManager != null)
-                {
-                    base.AppManager.SimulationLoadingStarted -= OnGameLoadingStarted;
-                }
-                base.AppManager = value;
-                if (base.AppManager != null)
-                {
-                    base.AppManager.SimulationLoadingStarted += OnGameLoadingStarted;
-                }
+                AppManager.SimulationLoadingStarted += OnGameLoadingStarted;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (AppManager != null)
+            {
+                AppManager.SimulationLoadingStarted -= OnGameLoadingStarted;
             }
         }
 
@@ -43,7 +42,7 @@ namespace NineLives.Framework.Unity.UI
             loadingOperation = operation;
             loadingOperation.Finished += OnLoadingOperationFinished;
             progressBar.SetProgressReporter(loadingOperation.Progress);
-            cancelButton.SetCancelable(loadingOperation);
+            cancelButton.Initialize(loadingOperation);
         }
 
         private void OnLoadingOperationFinished(IProgressAsyncOperation<ILoadedSimulation> operation)
@@ -53,16 +52,16 @@ namespace NineLives.Framework.Unity.UI
                 loadingOperation.Finished -= OnLoadingOperationFinished;
             }
             progressBar.SetProgressReporter(null);
-            cancelButton.SetCancelable(null);
+            cancelButton.Initialize(null);
             loadingOperation = null;
         }
 
-        protected virtual void OnDestroy()
-        {
-            if (AppManager != null)
-            {
-                AppManager.SimulationLoadingStarted -= OnGameLoadingStarted;
-            }
-        }
+        //protected virtual void OnDestroy()
+        //{
+        //    if (AppManager != null)
+        //    {
+        //        AppManager.SimulationLoadingStarted -= OnGameLoadingStarted;
+        //    }
+        //}
     }
 }

@@ -9,7 +9,7 @@ namespace NineLives.Framework.Core.Application.Manager
 
         public event Action<IProgressAsyncOperation<ILoadedSimulation>>? LoadingStarted;
 
-        public LoadingState(IAppContext context) : base(context)
+        public LoadingState(IAppStateContext context) : base(context)
         {           
         }        
 

@@ -69,10 +69,12 @@ namespace NineLives.Framework.Unity.Game
                     screens,
                     dialogProvider);
 
+                var applicationContext = new ApplicationContext(appManager, uiManager);
+
                 foreach (var screen in screens)
                 {
                     gameLoadingProgress.Report(pr += 0.05f, $"Screen '{screen.Id}' initialized...");
-                    screen.AppManager = appManager;
+                    screen.Initialize(applicationContext);
                 }
 
                 appManager.QuitGameRequested += QuitApp;

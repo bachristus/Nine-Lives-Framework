@@ -13,22 +13,17 @@ namespace NineLives.Framework.Unity.UI
         [SerializeField] private bool isModal;
         [SerializeField] private bool isVisibleExclusively;
 
-        private IUIRequest? uiRequest;
-        public virtual IUIRequest? UIRequest
-        {
-            get => uiRequest;
+        private IApplicationContext? context;
+        public IUIRequest? UIRequest => context?.UIRequest;
+        public IAppManager? AppManager => context?.AppManager;
 
-            set
-            {
-                uiRequest = value;
-                if (uiRequest != null)
-                {
-                    InitializeUIRequestButtons(uiRequest);
-                }
-            }
+        public void Initialize(IApplicationContext context)
+        {
+            this.context = context;
+
+            InitializeButtons(context);
         }
 
-        public virtual IAppManager? AppManager { get; set; }
         public string Id => screenIdSO.UniqueId;
         public virtual AppState AppState => AppState.None;
         public bool IsModal => isModal;
@@ -57,13 +52,13 @@ namespace NineLives.Framework.Unity.UI
             canvasGroup = GetComponent<CanvasGroup>();
         }
 
-        private void InitializeUIRequestButtons(IUIRequest uiRequest)
+        private void InitializeButtons(IApplicationContext context)
         {
-            var uiRequestButtons = gameObject.GetComponentsInChildren<UIRequestButton>();
+            var uiRequestButtons = gameObject.GetComponentsInChildren<ApplicationContextButton>();
 
             for (int i = 0; i < uiRequestButtons.Length; i++)
             {
-                uiRequestButtons[i].Initialize(uiRequest);
+                uiRequestButtons[i].Initialize(context);
             }
         }
 

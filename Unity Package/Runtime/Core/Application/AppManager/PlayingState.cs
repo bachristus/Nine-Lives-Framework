@@ -2,7 +2,7 @@ namespace NineLives.Framework.Core.Application.Manager
 {
     public class PlayingState : ApplicationFSMState
     {
-        public PlayingState(IAppContext context) : base(context)
+        public PlayingState(IAppStateContext context) : base(context)
         {
         }
 
