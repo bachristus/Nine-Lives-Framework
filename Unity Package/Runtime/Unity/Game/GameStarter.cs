@@ -18,6 +18,7 @@ namespace NineLives.Framework.Unity.Game
         private readonly IInitializingScreen initializingScreen;
         private readonly IScreensProvider screensProvider;
         private readonly ISimulationProvider simulationProvider;
+        private readonly ISoundManager? soundManager;
         private AppManager? appManager;
 
         public event Action? GameStarted;
@@ -25,7 +26,8 @@ namespace NineLives.Framework.Unity.Game
         public GameStarter(IGameInput input,
             IInitializingScreen initializingScreen,
             IScreensProvider screensProvider,
-            ISimulationProvider simulationProvider
+            ISimulationProvider simulationProvider,
+            ISoundManager? soundManager=null
             )
         {
             Debug.Log($"'{GetType()}' ctor");
@@ -33,6 +35,7 @@ namespace NineLives.Framework.Unity.Game
             this.initializingScreen = initializingScreen;
             this.screensProvider = screensProvider;
             this.simulationProvider = simulationProvider;
+            this.soundManager = soundManager;
             Debug.Log($"'{GetType()}' ctor ended");
         }
 
@@ -77,7 +80,10 @@ namespace NineLives.Framework.Unity.Game
                     screen.Initialize(applicationContext);
                 }
 
+                soundManager?.Initialize(appManager);
+
                 appManager.QuitGameRequested += QuitApp;
+
 
                 gameLoadingProgress.Report(pr += 0.95f, $"Game is about to start...");
 

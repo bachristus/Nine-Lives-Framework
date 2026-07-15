@@ -2,6 +2,7 @@ using NineLives.Framework.Core.Application;
 using NineLives.Framework.Core.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NineLives.Framework.Unity.UI
 {
@@ -12,6 +13,7 @@ namespace NineLives.Framework.Unity.UI
         [SerializeField] private ScreenIdSO screenIdSO;
         [SerializeField] private bool isModal;
         [SerializeField] private bool isVisibleExclusively;
+        [SerializeField] private Button escapeButton;
 
         private IApplicationContext? context;
         public IUIRequest? UIRequest => context?.UIRequest;
@@ -72,6 +74,10 @@ namespace NineLives.Framework.Unity.UI
 
         protected virtual void OnCancelPressed()
         {
+            if (escapeButton!=null)
+            {
+                escapeButton.onClick.Invoke();
+            }
         }
     }
 }
