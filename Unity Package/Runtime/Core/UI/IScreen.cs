@@ -10,8 +10,8 @@ namespace NineLives.Framework.Core.UI
         bool IsModal { get; }
         bool IsVisibleExclusively { get; }
 
-        IAppManager? AppManager { get; set; }
-        IUIRequest? UIRequest { get; set; }
+        void Initialize(IApplicationContext context);
+       
         void ProcessCancel();
 
         bool IsInteractable { get; set; }

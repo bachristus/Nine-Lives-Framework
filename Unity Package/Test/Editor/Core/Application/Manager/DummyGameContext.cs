@@ -3,7 +3,7 @@ using NineLives.Framework.Core.Application.Tests;
 
 namespace NineLives.Framework.Core.Application.Manager.Tests
 {
-    internal class DummyGameContext : IAppContext
+    internal class DummyGameContext : IAppStateContext
     {
         private GameLoadingRequest? request;
 

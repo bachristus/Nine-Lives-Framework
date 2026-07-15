@@ -1,20 +1,18 @@
-using NineLives.Framework.Core.Application;
 using NineLives.Framework.Core.Async;
 using System;
-using UnityEngine;
 
 namespace NineLives.Framework.Unity.UI
 {    
-    public class CancelButton:MonoBehaviour
+    public class CancelButton:BaseButton
     {        
         private ICancelable? cancelable;
-        public void OnButtonClick()
+        protected override void OnClick()
         {
-            if(cancelable == null) throw new Exception($"Cancellation token is not set in '{GetType()}' instance");
+            if(cancelable == null) throw new Exception($"Cancelable object is not set in '{GetType()}' instance");
             cancelable.Cancel();
         }
 
-        public void SetCancelable(ICancelable? cancelable)
+        public void Initialize(ICancelable? cancelable)
         {
             this.cancelable = cancelable;
         }

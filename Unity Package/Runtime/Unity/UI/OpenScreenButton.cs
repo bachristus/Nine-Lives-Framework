@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace NineLives.Framework.Unity.UI
 {
-    public class OpenScreenButton : UIRequestButton
+    public class OpenScreenButton : ApplicationContextButton
     {
         [SerializeField] private ScreenIdSO targetScreen;
 
-        public override void OnClick()
+        protected override void OnClick()
         {
             Debug.Log($"OpenScreenButton clicked, opening screen: {targetScreen.UniqueId}");
-            ui.ShowScreen(targetScreen.UniqueId);
+            context.UIRequest.ShowScreen(targetScreen.UniqueId);
         }
     }
 }

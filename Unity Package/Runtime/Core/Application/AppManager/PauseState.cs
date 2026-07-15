@@ -2,7 +2,7 @@ namespace NineLives.Framework.Core.Application.Manager
 {
     public class PauseState : ApplicationFSMState
     {
-        public PauseState(IAppContext context) : base(context)
+        public PauseState(IAppStateContext context) : base(context)
         {
         }
 

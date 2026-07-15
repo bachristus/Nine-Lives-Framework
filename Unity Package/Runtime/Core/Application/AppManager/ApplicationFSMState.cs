@@ -2,9 +2,9 @@ namespace NineLives.Framework.Core.Application.Manager
 {
     public abstract class ApplicationFSMState:IApplicationFSMState
     {                
-        protected readonly IAppContext context;
+        protected readonly IAppStateContext context;
 
-        protected ApplicationFSMState(IAppContext context)
+        protected ApplicationFSMState(IAppStateContext context)
         {            
             this.context=context;
         }

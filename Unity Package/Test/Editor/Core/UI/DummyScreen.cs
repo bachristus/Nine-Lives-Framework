@@ -29,8 +29,14 @@ namespace NineLives.Framework.Core.UI.Tests
         public string Title { get; set; }
         public IAppManager? AppManager { get; set; }
         public IUIRequest? UIRequest { get; set; }
+        public IApplicationContext Context { get; set; }
 
         public event Action? ProcessCancelPressed;
+
+        public void Initialize(IApplicationContext context)
+        {
+            this.Context=context;
+        }
 
         public void ProcessCancel()
         {

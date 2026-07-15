@@ -4,7 +4,7 @@ namespace NineLives.Framework.Core.Application.Manager
     {        
         public override AppState AppState => AppState.Menu;
         private readonly bool unloadGameOnEnter;
-        public MenuState(IAppContext context, bool unloadGameOnEnter=true) : base(context)
+        public MenuState(IAppStateContext context, bool unloadGameOnEnter=true) : base(context)
         {
             this.unloadGameOnEnter = unloadGameOnEnter;
         }

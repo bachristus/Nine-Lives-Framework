@@ -39,9 +39,7 @@ namespace NineLives.Framework.Core.UI
                     }
 
                     screensByGameState.Add(screen.AppState, screen);
-                }
-
-                screen.UIRequest = this;
+                }                
             }
 
             gameStateHolder.AppStateChanged += OnGameStateChanged;
